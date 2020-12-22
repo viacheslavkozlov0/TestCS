@@ -63,8 +63,8 @@ public class WriteToFile implements CommandLineRunner {
 			row.createCell(3).setCellValue(employee.getDepartment().getDepartmentName());
 		}
 	}
-	
-	void addEmployeesInfo(List<Employee> employees) {
+
+	private void addEmployeesInfo(List<Employee> employees) {
 		int rowNum=employees.size()+2;
 		Row salarySum = sheet.createRow(rowNum++);
 		salarySum.createCell(0).setCellValue("Общая сумма по зарплатам");
@@ -73,14 +73,14 @@ public class WriteToFile implements CommandLineRunner {
 		employeesNumberR.createCell(0).setCellValue("Количество сотрудников");
 		employeesNumberR.createCell(1).setCellValue(employees.size());
 	}
-	
-	void alignColumnsWidth() {
+
+	private void alignColumnsWidth() {
 		for (int i = 0; i < headers.size(); i++) {
 			sheet.autoSizeColumn(i);
 		}
 	}
-	
-	void writeToFile() {
+
+	private void writeToFile() {
 		try {
 			FileOutputStream fileOut = new FileOutputStream("report.xlsx");
 			workbook.write(fileOut);
